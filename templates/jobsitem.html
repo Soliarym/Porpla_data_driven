@@ -1,0 +1,23 @@
+<!-- divide into 2 area inside row col-9 width and -3 width upto 12   -->
+<div class="row border border-bottom" style ="margin-bottom :10px; padding-bottom: 10px";>
+  <div class="col-9">
+    <h4>
+      {{ job['title']}}'
+    </h4>
+    <div style="padding-left: 10px;"> 
+          <b>Location</b> {{ job['location']}}
+    </div>
+    <!-- if salary present in dict render it  else dont render -->
+    {% if 'salary' in job %}
+      <div style="padding-left: 10px;"> 
+          <b>Salary</b>: {{ job['salary']}}
+      </div>
+    {% endif %}
+  </div>
+  
+  <div class="col-3 ">
+    <!-- button at rightness of screen  -->
+    <button type="button" class="btn btn-primary float-end">Apply</button>
+  </div>
+    
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>  
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuitment</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+  </head>
+  <body>
+      <!-- header Area -->
+      <h1>Porpla Company</h1>
+      <!-- Image Area 1 from website-->
+      <div style="width: 100%; overflow: hidden; height: auto;">
+        <img   src="https://source.unsplash.com/1600x400/?landscape" alt="Landscape" style="width: 100%; height: auto;">
+      </div>
+      <!-- Image Area 2 from static folder-->
+      <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image" style="width: 100%; height: auto;">
+      <!-- company detail area -->
+      <header style="font-size: 10px; width: 100%; height: auto;">
+      <h1>About Us</h1></header>
+      <p>Porpla Company specializes in web development, crafting modern, responsive, and functional websites</p>
+      <!-- job openiing area -->
+     <p>Jobs Available</p>
+      <!-- contact us  -->
+    <button type="button">Contact Us</button>
+  </body>
+</html>
+
