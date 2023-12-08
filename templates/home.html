@@ -2,11 +2,14 @@
 <!-- css code -->
 <style> 
       /* use "#" to apply only image id being set up */
-    #banner{
+    #banner1{
       width: 100%;
       height: 240px;
-      /* picture not stengten */
-      object-fit: cover; 
+      /* picture centered on the screen */
+      object-fit: cover;
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 20px;
     }
     #banner2{
     width: 100%;
@@ -24,6 +27,7 @@
     text-decoration: underline;
     text-transform: uppercase;
     text-shadow: 2px 2px 5px rgb(255, 255, 0);
+ 
     }
     /* h2 style about us ,  */
     h2{
@@ -66,18 +70,33 @@
     <title>Recuitment</title>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
   </head>
+  
   <body>
+    <!-- navbar area -->
+    {% include 'navbar.html' %}   
+    <!-- Image Area 1 from website-->
+    <img class="img-fluid" id ="banner1" src="https://source.unsplash.com/1600x400/?programmer" alt="programmer">
+
       <!-- "container is bootstrap classs  setting area" -->
     <div class = "container"> 
       <!-- header Area  margin top -2 margin button -4-->
-      <h1 class ="text-center mt-2 mb-4"> {{companyname}} Company</h1>
-      <!-- Image Area 1 from website-->
-      <img class="img-fluid" id ="banner1" src="https://source.unsplash.com/1600x400/?programmer" alt="programmer">
+      <h1 class ="text-center"> {{companyname}} Company</h1>
       <!-- Image Area 2 from static folder-->
-      <img class="img-fluid" id = "banner2" src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image";>
+      <!-- <img class="img-fluid" id = "banner2" src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image";>
       <!-- company detail area -->
-      <h2 class ="text-center mt-4 mb-2"> About Us</h2>
-      <p class = "lead">Porpla Company specializes in web development, crafting modern, responsive, and functional websites</p>
+
+      
+      <div class="row align-items-stretch " style = "margin-bottom:16px;">
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+          <h2 class="text-center mt-4 mb-2"> About Us</h2>
+          <p class="lead">Porpla Company specializes in web development, crafting modern, responsive, and functional websites</p>
+        </div>
+        <!-- not show in mobile == d-none d-md-block col-md-6 -->
+        <div class="d-none d-md-block col-md-6 d-flex justify-content-center">
+          <img src="https://source.unsplash.com/250x250/?office,people" alt="Office People" class="img-fluid" style="border-radius:4px;">
+        </div>
+      </div>
+      
       <!-- job openiing area -->
       <h2 class ="text-center mt-4 mb-2" >Jobs Available</h2>
       
@@ -88,17 +107,15 @@
           {% include 'jobsitem.html' %}   
         {% endfor %}
       </div>
-      
-      <!-- <p class="mt-2 mb-2">Sofฤtware Developer</p> -->
 
       <!-- move button to center  -->
       <div class="text-center">
         <!-- contact us use bootstrap button -->
         <button type="button"  class="btn btn-primary btn-lg" >Contact Us</button>
       </div>
-      <!-- copy right cnfirm but dont need to follow text area use css class  -->
-      <p class ="text-center mt-4 mb-2">copy right 2023</p>
     </div>
+      <!-- add footer at the end  -->
+      {% include 'footer.html' %}
   </body>
 </html>
 
