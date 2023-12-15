@@ -1,44 +1,32 @@
 # import flask class , render html jasontify
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, redirect, url_for
+from sqlalchemy.engine.interfaces import DBAPIType
+from sqlalchemy import text
+#since we create database.py we can invoke it as a module
+from database import load_jobs_from_db, increase_salary_db
 
 app = Flask(__name__)  # create object app of the class
-
-# python dictionary normally same format as database
-JOBS = [{
-    'id': 1,
-    'title': 'Python Developer',
-    'location': 'New York',
-    'salary': '$5,000'
-}, {
-    'id': 2,
-    'title': 'Data Scientist',
-    'location': 'San Francisco',
-    'salary': '$5,000'
-}, {
-    'id': 3,
-    'title': 'Machine Learning Engineer',
-    'location': 'San Francisco',
-    'salary': '$5,000'
-}, {
-    'id': 4,
-    'title': 'Dev Op',
-    'location': 'San Francisco',
-}]
-
+job_list = load_jobs_from_db()
 
 # datadynamic using jason
-@app.route('/api/jobs')
-# convert to python dict to jason
-def list_jobs():
-  return jsonify(JOBS)
+@app.route('/jobs')
+def list_jobs():  # convert jason return as json webpage
+  return jsonify(job_list)
 
 
-# www.poprla.com(DNS)/...  << หลัง / คือ route , @ คือเครื่องหมายที่ใช้ function พิเศษ library นั้นๆได้ หลัง '/' ด้านบน def function to return "helloworld"
+# www.porprla.com(DNS)/...  << หลัง / คือ route , @ คือเครื่องหมายที่ใช้ function พิเศษ library นั้นๆได้ หลัง '/' ด้านบน def function to return "helloworld"
 @app.route('/')
 def home():
+  job_list = load_jobs_from_db()
   # render this html file, python list sent to renders via html
-  return render_template("home.html", jobs=JOBS, companyname="IDK")
+  return render_template("home.html", jobs=job_list, companyname="IDK")
   #return 'Hello, this is a basic Flask webpage!'
+
+#after click apply 
+@app.route('/apply', methods=['POST'])
+def apply():
+  increase_salary_db()
+  return redirect(url_for('home'))
 
 
 # 0.0.0.0 คือ ให้เป็น public ip ที่สามารถเข้าไปในเว็บไต์ได้ debug=True เพื่อให้ code เปลี่ยนแปลง อัพเดทบนหน้าเว็บทันที
