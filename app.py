@@ -1,12 +1,13 @@
 # import flask class , render html jasontify
 from flask import Flask, render_template, jsonify, redirect, url_for
-from sqlalchemy.engine.interfaces import DBAPIType
+# from sqlalchemy.engine.interfaces import DBAPIType
 from sqlalchemy import text
 #since we create database.py we can invoke it as a module
 from database import load_jobs_from_db, increase_salary_db
 
 app = Flask(__name__)  # create object app of the class
 job_list = load_jobs_from_db()
+
 
 # datadynamic using jason
 @app.route('/jobs')
@@ -22,7 +23,8 @@ def home():
   return render_template("home.html", jobs=job_list, companyname="IDK")
   #return 'Hello, this is a basic Flask webpage!'
 
-#after click apply 
+
+#after click apply
 @app.route('/apply', methods=['POST'])
 def apply():
   increase_salary_db()
