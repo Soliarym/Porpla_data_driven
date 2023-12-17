@@ -1,6 +1,5 @@
 import sqlalchemy
 from sqlalchemy import create_engine, text
-
 import os
 database_connection_text = os.environ['db_connection']
 
@@ -22,6 +21,20 @@ def load_jobs_from_db():
     # cast alchemy class list to python dictionary
     print("jobs_alchemy is ", type(jobs), " jobs_dict is ", type(jobs_dict))
     return jobs_dict
+
+def load_one_jobs_from_db(id):
+  with engine.connect() as conn:
+    result = conn.execute(
+       text(f"SELECT * FROM jobs WHERE id={id}")
+      )
+    rows = result.all()
+    jobs_dict = [row._asdict() for row in rows]
+    if len(jobs_dict) == 0:
+      return None
+    else:
+      return jobs_dict[0]
+
+
 
 
 def increase_salary_db():

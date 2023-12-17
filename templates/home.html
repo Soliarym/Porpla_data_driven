@@ -1,22 +1,7 @@
 <!DOCTYPE html>  
 <!-- css code -->
 <style> 
-      /* use "#" to apply only image id being set up */
-    #banner1{
-      width: 100%;
-      height: 240px;
-      /* picture centered on the screen */
-      object-fit: cover;
-      margin: 0 auto;
-      display: block;
-      margin-bottom: 20px;
-    }
-    #banner2{
-    width: 100%;
-    height: 40px;
-    /* picture not stengten */
-    object-fit: cover; 
-    }
+    
     /* h1 style apply adjust size color etc  */
     h1{
     color: rgb(255, 0, 0);
@@ -27,7 +12,12 @@
     text-decoration: underline;
     text-transform: uppercase;
     text-shadow: 2px 2px 5px rgb(255, 255, 0);
- 
+    }
+    #banner2{
+    width: 100%;
+    height: 40px;
+    /* picture not stengten */
+    object-fit: cover; 
     }
     /* h2 style about us ,  */
     h2{
@@ -62,9 +52,7 @@
 <html lang="en">
   <head>
     <!--  bootstrap command for making it work properly -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {% include 'bootstrap.html' %}   
 
     <!-- html code -->
     <title>Recuitment</title>
@@ -75,8 +63,7 @@
     <!-- navbar area -->
     {% include 'navbar.html' %}   
     <!-- Image Area 1 from website-->
-    <img class="img-fluid" id ="banner1" src="https://source.unsplash.com/1600x400/?programmer" alt="programmer">
-
+    {% include 'banner.html' %}   
       <!-- "container is bootstrap classs  setting area" -->
     <div class = "container"> 
       <!-- header Area  margin top -2 margin button -4-->
@@ -85,10 +72,10 @@
       <!-- <img class="img-fluid" id = "banner2" src="{{ url_for('static', filename='banner.png') }}" alt="Banner Image";>
       <!-- company detail area -->
 
+      
       <div class="row align-items-stretch " style = "margin-bottom:16px;">
         <div class="col-md-6 d-flex flex-column justify-content-center">
           <h2 class="text-center mt-4 mb-2"> About Us</h2>
-          
           <p class="lead">Porpla Company specializes in web development, crafting modern, responsive, and functional websites</p>
         </div>
         <!-- not show in mobile == d-none d-md-block col-md-6 -->

@@ -3,17 +3,24 @@ from flask import Flask, render_template, jsonify, redirect, url_for
 # from sqlalchemy.engine.interfaces import DBAPIType
 from sqlalchemy import text
 #since we create database.py we can invoke it as a module
-from database import load_jobs_from_db, increase_salary_db
+from database import load_jobs_from_db, increase_salary_db, load_one_jobs_from_db
 
 app = Flask(__name__)  # create object app of the class
 job_list = load_jobs_from_db()
 
-
 # datadynamic using jason
-@app.route('/jobs')
+@app.route('/api/jobs')
 def list_jobs():  # convert jason return as json webpage
   return jsonify(job_list)
 
+#add recruitment page each jobs
+@app.route("/jobs/<id>")
+def showjobs(id):
+  job_list = load_one_jobs_from_db(id)
+  if not job_list:
+    return "Not Found",404
+  return render_template("jobpage.html", job=job_list, companyname="IDK")
+  # return jsonify(job_list)
 
 # www.porprla.com(DNS)/...  << หลัง / คือ route , @ คือเครื่องหมายที่ใช้ function พิเศษ library นั้นๆได้ หลัง '/' ด้านบน def function to return "helloworld"
 @app.route('/')
@@ -23,13 +30,11 @@ def home():
   return render_template("home.html", jobs=job_list, companyname="IDK")
   #return 'Hello, this is a basic Flask webpage!'
 
-
-#after click apply
+#after click increase money
 @app.route('/apply', methods=['POST'])
 def apply():
   increase_salary_db()
   return redirect(url_for('home'))
-
 
 # 0.0.0.0 คือ ให้เป็น public ip ที่สามารถเข้าไปในเว็บไต์ได้ debug=True เพื่อให้ code เปลี่ยนแปลง อัพเดทบนหน้าเว็บทันที
 print("__name is ", __name__)

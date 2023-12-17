@@ -2,7 +2,7 @@
 <div class="row border border-bottom" style ="margin-bottom :10px; padding-bottom: 10px";>
   <div class="col-9">
     <h4>
-      {{ job['title']}}'
+      {{ job['title']}}
     </h4>
     <div style="padding-left: 10px;"> 
           <b>Location</b> {{ job['location']}}
@@ -21,7 +21,10 @@
     <!-- link button --> 
     <!-- <a href ="https://google.com" type="button" class="btn btn-primary float-end">Apply</a> -->
     <!-- sent mail button -->
-    <a href="mailto:soliarym@gmail.com?subject=Job Application&body=apply to {{job['title']}}" class="btn btn-primary float-end">Apply</a>
+    <!-- <a href="mailto:soliarym@gmail.com?subject=Job Application&body=apply to {{job['title']}}" class="btn btn-primary float-end">Apply</a> -->
+    <!-- sent mail button -->
+    <a href="/jobs/{{job['id']}}" class="btn btn-primary float-end">Apply</a>
+
   </div>
     
 </div>

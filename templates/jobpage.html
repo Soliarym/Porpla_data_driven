@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'bootstrap.html' %}   
+    <title>Your Website Title</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            padding: 40px 0 40px 40px; /* Top, Right, Bottom, Left */
+            text-align: left; /* Align text to the left */
+
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+          font-size: 24px;
+          background: -webkit-linear-gradient(#eee, #333);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+  <!-- navbar area -->
+  {% include 'navbar.html' %}   
+  {% include 'banner.html' %}   
+
+    <header>
+        <h1>{{companyname}}</h1>
+        <p>Welcome to our world of innovation</p>
+    </header>
+
+    <section>
+        <h2>  
+          
+          <div>
+          {{ job['title']}}
+          </div>
+
+          <b>Location</b> {{ job['location']}}
+          
+          {% if 'salary' in job %}
+              <div > 
+                <b>Salary</b>: {{ job['salary']}}
+              </div>
+          {% endif %}
+          
+          <div>
+            <b>Requirement</b>
+            {{ job['requirements']}}
+          </div>
+          
+          <div>
+            <b>Responsibilities</b>
+            <ul>
+            <!--  break text into joblist  -->
+            {% for line in job['responsibilities'].split("\n") %}
+                <li>{{ line }}</li>
+            {% endfor %}}
+            </ul>
+          </div>
+         
+        </h2>
+        <!-- Add your job descriptions and content here -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
+    </section>
+     {% include 'footer.html' %}
+
+  </body>
+  
+</html>
