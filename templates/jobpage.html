@@ -34,6 +34,13 @@
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
+        .container {
+          max-width: 100%;
+          text-align: left;
+        }
+        .container > * {
+          text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -80,6 +87,13 @@
         <!-- Add your job descriptions and content here -->
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
     </section>
+
+    <!-- application form part -->
+    <div class = "container"> 
+    {% include 'application_form.html' %}
+    </div>
+
+
      {% include 'footer.html' %}
 
   </body>

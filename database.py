@@ -2,7 +2,6 @@ import sqlalchemy
 from sqlalchemy import create_engine, text
 import os
 database_connection_text = os.environ['db_connection']
-
 print("___ start database.py : sqlalchemy version is ", sqlalchemy.__version__)
 # connected to databse mysql workbench with planetscale, using sqlalchemy , ssl conection
 engine = create_engine(database_connection_text,
@@ -34,9 +33,6 @@ def load_one_jobs_from_db(id):
     else:
       return jobs_dict[0]
 
-
-
-
 def increase_salary_db():
   jobs_dict = load_jobs_from_db()
   for job in jobs_dict:
@@ -55,6 +51,22 @@ def increase_salary_db():
           'job_id': job['id']
       })
 
+def add_application_to_db(job_id, data):
+  # Save the changes to the database
+  with engine.connect() as conn:
+    update_query = text(
+    "insert into application ( job_id, fullname, email, linkedin_url, phone, education)  values (:job_id, :fullname, :email, :linkedin_url, :phone, :education)")
+    conn.execute(update_query, {
+          'job_id'      : job_id,
+          'fullname'    : data['name'],    
+          'email'       : data['email'],
+          'linkedin_url': data['linkedin'],
+          'phone'       : data['phone'],
+          'education'   : data['education']
+    })
+      
+
+
 
 # open database name as conn and do anything you want
 # with engine.connect() as conn:
@@ -71,9 +83,3 @@ def increase_salary_db():
 #       print(" CURRENT salary is ", job['salary'])
 #       job['salary'] = 700
 #       print(" LATERR salary is ", job['salary'])
-
-# Update the database with the modified job data
-# with engine.connect() as conn:
-#     for job in jobs_dict:
-#         update_query = text("UPDATE jobs SET salary = :salary WHERE id = :job_id")
-#         conn.execute(update_query, {'salary': job['salary'], 'job_id': job['id']})

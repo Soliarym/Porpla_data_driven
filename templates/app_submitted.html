@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      {% include 'bootstrap.html' %}   
+      <title>Application Submitted</title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          body {
+              font-family: 'Arial', sans-serif;
+              background-color: #f4f4f4;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              min-height: 100vh;
+          }
+          header {
+              background-color: #3498db;
+              padding: 20px;
+              text-align: center;
+              color: #fff;
+              margin-bottom: 20px;
+          }
+          section {
+              background-color: #fff;
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              padding: 20px;
+              text-align: left;
+              width: 80%;
+              max-width: 600px;
+          }
+          h1 {
+              margin: 0;
+              font-size: 24px;
+          }
+          h2 {
+              color: #3498db;
+              font-size: 24px;
+              margin-bottom: 20px;
+          }
+          ul {
+              list-style: none;
+              padding: 0;
+          }
+          li {
+              font-size: 18px;
+              margin-bottom: 10px;
+          }
+          strong {
+              color: #2ecc71;
+          }
+          footer {
+              margin-top: 20px;
+              text-align: center;
+              color: #777;
+          }
+      </style>
+  </head>
+  
+<body>
+  <!-- navbar area -->
+  {% include 'navbar.html' %}   
+    <header>
+        <h1>Porpla Company</h1>
+    </header>
+
+  <section>
+    <h2>Your Application for {{jobname['title']}}
+        has been submitted
+    </h2>
+      <ul>
+          <li><strong>Job ID:</strong> {{ application['job_id'] }}</li>
+          <li><strong>Full Name:</strong> {{ application['name'] }}</li>
+          <li><strong>Email:</strong> {{ application['email'] }}</li>
+          <li><strong>LinkedIn:</strong> {{ application['linkedin'] }}</li>
+          <li><strong>Phone:</strong> {{ application['phone'] }}</li>
+          <li><strong>Education:</strong> {{ application['education'] }}</li>
+      </ul>
+    
+    <div class="btn-group">
+      <a href="/" class="btn btn-secondary">Back to Home Page</a>
+    </div>
+
+  </section>
+
+    {% include 'footer.html' %}
+  
+  </body>
+</html>
